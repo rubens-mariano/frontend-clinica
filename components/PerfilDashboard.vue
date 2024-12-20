@@ -25,10 +25,6 @@
             <span>Consultas agendadas</span>
           </div>
         </NuxtLink>
-        <div class="icon-item">
-          <i class="fa fa-address-book"></i>
-          <span>Meus convênios</span>
-        </div>
         <NuxtLink to="/consultar-dados">
           <div class="icon-item">
             <i class="fa fa-user"></i>
@@ -38,7 +34,7 @@
         <NuxtLink to="/consultar-orcamento">
           <div class="icon-item">
             <i class="fa fa-file-alt"></i>
-            <span>Meus orçamentos</span>
+            <span>Orçamentos</span>
           </div>
         </NuxtLink>
       </div>

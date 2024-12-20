@@ -96,6 +96,7 @@ const addConvenio = async () => {
 
       if (response.success) {
         clearForm(); // Limpa o formulário
+        await loadConvenios();
         triggerPopup('Convênio cadastrado com sucesso ✔️', '/consultar-convenio');
       } else {
         triggerPopup('Erro ao cadastrar o Convênio. Tente novamente.');
