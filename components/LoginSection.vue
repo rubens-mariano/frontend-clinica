@@ -23,7 +23,7 @@ import { getUserData } from '../services/userService'
 
 const form = ref({email: '', password: ''});
 
-const onSubmit = async ()=> {
+const onSubmit = async () => {
   if(!form.value.email|| !form.value.password){
     alert('Por favor, preencha todos os campos!');
     return;

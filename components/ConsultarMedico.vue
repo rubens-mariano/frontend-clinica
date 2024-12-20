@@ -23,7 +23,7 @@
           <select id="usuario" v-model="newMedico.usuario">
             <option value="" disabled selected>Selecione um usuário</option>
             <option v-for="user in users" :key="user.id" :value="user.id">
-              {{ user.email }}
+              {{ user.name }}
             </option>
           </select>
         </div>
@@ -74,7 +74,7 @@
             <select id="usuario" v-model="editMedicoData.user">
               <option value="" disabled selected>Selecione um usuário</option>
               <option v-for="user in users" :key="user.id" :value="user.id">
-                {{ user.email }}
+                {{ user.name }}
               </option>
             </select>
           </div>
