@@ -9,7 +9,14 @@ export default defineNuxtConfig({
     '~/assets/css/cadastro.css',
     '~/assets/css/consulta-agendamento.css',
     '~/assets/css/perfil.css',
-    '~/assets/css/consultar-medico.css'
+    '~/assets/css/consultar-medico.css',
+    '~/assets/css/consulta-convenios.css',
+    '~/assets/css/consulta-dados.css',
+    '~/assets/css/consulta-orcamentos.css',
+    '~/assets/css/consultar-usuarios.css',
+    '~/assets/css/convenios-atendidos.css',
+    '~/assets/css/recuperar-senha.css',
+    '~/assets/css/confirmacao.css',
   ],
   app: {
     head: {
@@ -18,7 +25,6 @@ export default defineNuxtConfig({
       ]
     }
   },
-
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true }
 })

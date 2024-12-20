@@ -22,8 +22,9 @@
           <label for="usuario">Usuário *</label>
           <select id="usuario" v-model="newMedico.usuario">
             <option value="" disabled selected>Selecione um usuário</option>
-            <option value="usuario1">Usuário 1</option>
-            <option value="usuario2">Usuário 2</option>
+            <option v-for="user in users" :key="user.id" :value="user.id">
+              {{ user.email }}
+            </option>
           </select>
         </div>
       </div>
@@ -42,14 +43,14 @@
           <select id="medicos" v-model="selectedMedico">
             <option value="" disabled selected>Selecione um médico</option>
             <option v-for="medico in medicos" :key="medico.id" :value="medico.id">
-              {{ medico.nome }}
+              {{ medico.name }}
             </option>
           </select>
         </div>
       </div>
       <div class="button-container">
         <button class="btn-primary" @click="editMedico">Editar</button>
-        <button class="btn-secondary" @click="deleteMedico">Excluir</button>
+        <button class="btn-secondary" @click="medicoDelete">Excluir</button>
       </div>
     </fieldset>
 
@@ -60,7 +61,7 @@
         <div class="form-row">
           <div class="form-group">
             <label for="edit-nome">Nome *</label>
-            <input type="text" id="edit-nome" v-model="editMedicoData.nome" />
+            <input type="text" id="edit-nome" v-model="editMedicoData.name" />
           </div>
           <div class="form-group">
             <label for="edit-crm">CRM *</label>
@@ -69,10 +70,12 @@
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label for="edit-usuario">Usuário *</label>
-            <select id="edit-usuario" v-model="editMedicoData.usuario">
-              <option value="usuario1">Usuário 1</option>
-              <option value="usuario2">Usuário 2</option>
+            <label for="usuario">Usuário *</label>
+            <select id="usuario" v-model="editMedicoData.user">
+              <option value="" disabled selected>Selecione um usuário</option>
+              <option v-for="user in users" :key="user.id" :value="user.id">
+                {{ user.email }}
+              </option>
             </select>
           </div>
         </div>
@@ -83,6 +86,7 @@
       </div>
     </div>
 
+
     <!-- Pop-up de Sucesso -->
     <div v-if="showPopup" class="popup-sucesso">
       <span>{{ popupMessage }}</span>
@@ -92,29 +96,70 @@
 
 <script setup>
 import {ref} from 'vue';
+import {createMedico, deleteMedico, getAllMedicos, updateMedico} from '~/services/medicoService'; // Importe o serviço correto
 import {useConfirmation} from '~/composables/useConfirmation';
+import {getUsersData} from '~/services/userService'; // Importe o serviço para buscar os usuários
 
 const {showPopup, popupMessage, triggerPopup} = useConfirmation();
-
-const medicos = ref([
-  {id: 1, nome: 'Médico 1', crm: '12345', usuario: 'usuario1'},
-  {id: 2, nome: 'Médico 2', crm: '67890', usuario: 'usuario2'},
-]);
+const users = ref([]); // Lista de usuários disponíveis
+const medicos = ref([]); // Lista de médicos disponíveis
 
 const newMedico = ref({nome: '', crm: '', usuario: ''});
 const selectedMedico = ref('');
 const editPopup = ref(false);
 const editMedicoData = ref({});
 
-function addMedico() {
+// Função para carregar usuários
+const loadUsers = async () => {
+  try {
+    const response = await getUsersData();
+
+    if (response.success) {
+      users.value = response.data.user; // Define a lista de usuários
+    } else {
+      triggerPopup('Erro ao carregar usuários. Tente novamente.');
+    }
+  } catch (error) {
+    triggerPopup('Erro ao carregar usuários. Verifique a conexão.');
+  }
+};
+
+// Função para carregar usuários
+const loadMedicos = async () => {
+  try {
+    const response = await getAllMedicos();
+
+    if (response.success) {
+      medicos.value = response.data.message; // Define a lista de usuários
+    } else {
+      triggerPopup('Erro ao carregar usuários. Tente novamente.');
+    }
+  } catch (error) {
+    triggerPopup('Erro ao carregar usuários. Verifique a conexão.');
+  }
+};
+
+const addMedico = async () => {
   if (newMedico.value.nome && newMedico.value.crm && newMedico.value.usuario) {
-    medicos.value.push({id: medicos.value.length + 1, ...newMedico.value});
-    clearForm();
-    triggerPopup('Cadastro realizado com sucesso ✔️', '/agendamento');
+    try {
+      // Chama o serviço para criar o médico na API
+      const response = await createMedico(newMedico.value);
+
+      if (response.success) {
+        clearForm(); // Limpa o formulário
+        triggerPopup('Cadastro realizado com sucesso ✔️', '/consultar-medico');
+      } else {
+        triggerPopup('Erro ao cadastrar o médico. Tente novamente.');
+      }
+    } catch (error) {
+      triggerPopup('Erro ao cadastrar o médico. Verifique os dados.');
+    }
+  } else {
+    triggerPopup('Preencha todos os campos antes de salvar.');
   }
 }
 
-function editMedico() {
+const editMedico = async () => {
   const medico = medicos.value.find((m) => m.id === selectedMedico.value);
   if (medico) {
     editMedicoData.value = {...medico};
@@ -122,19 +167,52 @@ function editMedico() {
   }
 }
 
-function saveEdit() {
+const saveEdit = async () => {
   const index = medicos.value.findIndex((m) => m.id === editMedicoData.value.id);
   if (index !== -1) {
-    medicos.value[index] = {...editMedicoData.value};
-    closeEditPopup();
-    triggerPopup('Médico editado com sucesso ✔️');
+    try {
+      const medico = editMedicoData.value
+      // Chama o serviço para criar o médico na API
+      const response = await updateMedico(medico);
+
+      if (response.success) {
+        medicos.value[index] = {...editMedicoData.value};
+        clearForm(); // Limpa o formulário
+        closeEditPopup();
+        triggerPopup('Médico editado com sucesso ✔️', '/consultar-medico');
+      } else {
+        triggerPopup('Erro ao editar o médico. Tente novamente.');
+      }
+    } catch (error) {
+      triggerPopup('Erro ao editar o médico. Verifique os dados.');
+    }
+  } else {
+    triggerPopup('Selecione um dos médicos para editar.');
   }
 }
 
-function deleteMedico() {
-  medicos.value = medicos.value.filter((m) => m.id !== selectedMedico.value);
-  selectedMedico.value = '';
-  triggerPopup('Médico excluído com sucesso ✔️');
+const medicoDelete = async () => {
+  const medico = medicos.value.find((m) => m.id === selectedMedico.value);
+  if (medico) {
+    try {
+      // Chama o serviço para criar o médico na API
+      const response = await deleteMedico(medico.id);
+
+      if (response.success) {
+        medicos.value = medicos.value.filter((m) => m.id !== selectedMedico.value);
+        selectedMedico.value = '';
+        clearForm(); // Limpa o formulário
+        closeEditPopup();
+        triggerPopup('Médico excluído com sucesso ✔', '/consultar-medico');
+      } else {
+        triggerPopup('Erro ao excluir o médico. Tente novamente.');
+      }
+    } catch (error) {
+      triggerPopup('Erro ao excluir o médico. Verifique os dados.');
+    }
+  } else {
+    triggerPopup('Selecione um dos médicos para excluir.');
+  }
 }
 
 function clearForm() {
@@ -144,6 +222,11 @@ function clearForm() {
 function closeEditPopup() {
   editPopup.value = false;
 }
+
+onMounted(() => {
+  loadUsers(); // Carrega os usuários ao montar o componente
+  loadMedicos();
+});
 </script>
 
 <style scoped>

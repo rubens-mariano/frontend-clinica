@@ -19,7 +19,7 @@
     <section class="section">
       <h2>Minha Área</h2>
       <div class="icons-area">
-        <NuxtLink to="/consulta-agendamento">
+        <NuxtLink to="/consultar-agendamento">
           <div class="icon-item">
             <i class="fa fa-clock"></i>
             <span>Consultas agendadas</span>
@@ -49,7 +49,7 @@
     <section class="section">
       <h2>Administrador</h2>
       <div class="icons-area">
-        <NuxtLink to="/gerenciamento-usuario">
+        <NuxtLink to="/consultar-usuario">
           <div class="icon-item">
             <i class="fa fa-users"></i>
             <span>Gerenciamento de Usuários</span>
