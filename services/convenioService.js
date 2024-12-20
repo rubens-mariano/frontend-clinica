@@ -30,9 +30,7 @@ export const createConvenio = async (formData) => {
     const axios = await createAxiosInstance();
     console.log(`FormData: ${formData}`)
     const convenio = {
-        name: formData.nome,
-        crm: formData.crm,
-        user: formData.usuario
+        name: formData.name
     }
 
     return await axios.post('/convenios', convenio)
@@ -49,9 +47,7 @@ export const updateConvenio = async (formData) => {
 
     console.log(`FormData: ${formData.user}`)
     const convenio = {
-        name: formData.nome,
-        crm: formData.crm,
-        user: formData.user
+        name: formData.name
     }
 
     return await axios.patch(`/convenios/${formData.id}`, convenio)
@@ -66,7 +62,7 @@ export const updateConvenio = async (formData) => {
 export const deleteConvenio = async (convenioId) => {
     const axios = await createAxiosInstance();
 
-    return await axios.delete(`/medicos/${convenioId}`)
+    return await axios.delete(`/convenios/${convenioId}`)
         .then(({data}) => {
             return {success: true};
         })

@@ -114,18 +114,6 @@ function closeDeletePopup() {
   deletePopup.value = false;
 }
 
-function confirmDelete() {
-  agendamentos.value = agendamentos.value.filter(c => c.id !== deleteId.value);
-  closeDeletePopup();
-  showPopupMessage('Consulta excluída com sucesso ✔️');
-}
-
-function showPopupMessage(message) {
-  popupMessage.value = message;
-  showPopup.value = true;
-  setTimeout(() => (showPopup.value = false), 3000);
-}
-
 // Função para carregar agendamentos
 const loadAgendamentos = async () => {
   const userData = JSON.parse(localStorage.getItem('@user_data'));
@@ -186,6 +174,7 @@ const handleEdit = async () => {
       if (response.success) {
         agendamentos.value[index] = { ...editData.value };
         closeEditPopup();
+        await loadAgendamentos();
         triggerPopup('Consulta editada com sucesso ✔️', '/consultar-agendamento');
       } else {
         triggerPopup('Erro ao editar o médico. Tente novamente.');
