@@ -63,7 +63,6 @@
 import { ref } from 'vue';
 import { useConfirmation } from '~/composables/useConfirmation';
 import {createConvenio, getAllConvenios, updateConvenio, deleteConvenio} from "~/services/convenioService.js";
-import {updateMedico} from "~/services/medicoService.js";
 const { showPopup, popupMessage, triggerPopup } = useConfirmation();
 
 const convenios = ref([]);
@@ -73,7 +72,7 @@ const editConvenio = ref({});
 const showEditPopup = ref(false);
 const deleteId = ref(null);
 
-// Função para carregar usuários
+// Função para carregar Convenios
 const loadConvenios = async () => {
   try {
     const response = await getAllConvenios();

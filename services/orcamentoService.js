@@ -50,15 +50,14 @@ export const createOrcamento = async (formData) => {
 export const updateOrcamento = async (formData) => {
     const axios = await createAxiosInstance();
 
-    console.log(`FormData: ${formData.user}`)
+    console.log(`FormData: ${formData.nomeSolicitante}`)
     const orcamento = {
-        nomeSolicitante: formData.solicitante,
-        nomePaciente: formData.paciente,
+        nomeSolicitante: formData.nomeSolicitante,
+        nomePaciente: formData.nomePaciente,
         email: formData.email,
         telefone: formData.telefone,
-        convenio: formData.convenio,
-        medico: formData.medico,
-        observacao: formData.observacoes,
+        convenio: formData.convenio.id,
+        observacoes: formData.observacoes,
     }
 
     return await axios.patch(`/orcamentos/${formData.id}`, orcamento)
