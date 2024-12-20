@@ -1,0 +1,99 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Cabeçalho */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: #f9f9f9;
+    border-bottom: 2px solid #ddd;
+}
+
+.left-info, .right-info {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.top-bar span, .top-bar i {
+    margin-right: 15px;
+}
+
+.top-bar input {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+}
+
+/* Fundo e Conteúdo Central */
+.confirmation-container {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://s3-alpha-sig.figma.com/img/7111/861f/38cc9f67ccfcca14c3f16cb551beff36?Expires=1735516800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KXEiGKwRNE3WDr6IzmvZWtzMbvQDTRBSllKdZY84zpuVWGgruweSrJXS9-5MLH9h~F~h6jRtePUY97U5DeTgQ5pnx-xrtG1aGguBMBglMlgRvY4zr2f9t8W35Gttp8yDdmEFBNSLtwCmTsZDHiZnqpKgmCcYR5r4DqSbBW~ZNzJdQUExIgztZvR2tvnY17DrqFUe3-4o-hyDlrqYHA7XM8FvTZOmk2HS1a5VdHKpGF7wVGDHw9v2VddXEnC7D1hq9FHHrJSxG9N2AuwIueG8FeqGlAb56r~uhIn3QwYrZiw7SwugvGuuSKZn2ert6~AhQ9iCL77HmZwj4x8pcGLVSg__');
+    background-size: cover;
+    background-position: center;
+}
+
+.confirmation-content {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.7); /* Fundo branco semi-transparente */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.check-icon {
+    font-size: 4rem;
+    color: #0090b8;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #0090b8;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+/* Botões */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn-back {
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.btn-back:hover {
+    background-color: #444;
+}
+
+.btn-continue {
+    background-color: #0090b8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.btn-continue:hover {
+    background-color: #007a98;
+}
