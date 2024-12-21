@@ -1,6 +1,6 @@
 <template>
   <main class="content">
-    <h1>Painel</h1>
+    <h1>Painel do Usuário</h1>
     <hr class="line" />
 
     <!-- Seção Serviços -->

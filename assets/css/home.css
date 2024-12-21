@@ -43,7 +43,7 @@ body {
 .banner {
     position: relative;
     background: url('https://s3-alpha-sig.figma.com/img/7111/861f/38cc9f67ccfcca14c3f16cb551beff36?Expires=1735516800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KXEiGKwRNE3WDr6IzmvZWtzMbvQDTRBSllKdZY84zpuVWGgruweSrJXS9-5MLH9h~F~h6jRtePUY97U5DeTgQ5pnx-xrtG1aGguBMBglMlgRvY4zr2f9t8W35Gttp8yDdmEFBNSLtwCmTsZDHiZnqpKgmCcYR5r4DqSbBW~ZNzJdQUExIgztZvR2tvnY17DrqFUe3-4o-hyDlrqYHA7XM8FvTZOmk2HS1a5VdHKpGF7wVGDHw9v2VddXEnC7D1hq9FHHrJSxG9N2AuwIueG8FeqGlAb56r~uhIn3QwYrZiw7SwugvGuuSKZn2ert6~AhQ9iCL77HmZwj4x8pcGLVSg__') no-repeat center center/cover;
-    height: 700px;
+    height: 400px;
 }
 
 .banner-overlay {

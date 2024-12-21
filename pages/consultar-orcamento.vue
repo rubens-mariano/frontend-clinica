@@ -9,3 +9,4 @@
 import TopBar from '~/components/TopBar.vue';
 import GerenciarOrcamentos from '~/components/GerenciarOrcamentos.vue';
 </script>
+

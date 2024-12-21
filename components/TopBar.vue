@@ -6,11 +6,10 @@
       <span><i class="fa fa-briefcase"></i> Trabalhe conosco</span>
     </div>
     <div class="right-info">
-      <i class="fa fa-instagram"></i>
       <a href="/">
         <i class="fa fa-home"></i>
       </a>
-      <i class="fa fa-bars"></i>
+ 
       <a href="/perfil">
         <i class="fa fa-user"></i>
       </a>

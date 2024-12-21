@@ -31,7 +31,7 @@
 
     <!-- Pop-up de Edição -->
     <div v-if="editPopup" class="popup">
-      <div class="popup-content">
+      <div class="popup-content-a">
         <h2>Editar Orçamento</h2>
         <form @submit.prevent="saveEdit">
           <div class="form-group">
@@ -216,3 +216,4 @@ onMounted(() => {
   }
 }
 </style>
+

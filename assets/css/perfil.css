@@ -84,7 +84,7 @@ h1, h2 {
 /* Minha Área */
 .icons-area {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     text-align: center;
     margin-top: 20px;
 }
@@ -100,8 +100,8 @@ h1, h2 {
 .icon-item i {
     font-size: 2.5rem;
     color: #333;
-    margin: 0; /* Remove margens adicionais */
-    line-height: 1; /* Garante que o ícone não tenha espaço vertical extra */
+    margin: 0; 
+    line-height: 1; 
 }
 
 .icon-item span {
