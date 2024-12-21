@@ -1,6 +1,6 @@
 <template>
   <main class="content">
-    <h1>Painel</h1>
+    <h1>Painel do Usuário</h1>
     <hr class="line" />
 
     <!-- Seção Serviços -->
@@ -19,16 +19,12 @@
     <section class="section">
       <h2>Minha Área</h2>
       <div class="icons-area">
-        <NuxtLink to="/consulta-agendamento">
+        <NuxtLink to="/consultar-agendamento">
           <div class="icon-item">
             <i class="fa fa-clock"></i>
             <span>Consultas agendadas</span>
           </div>
         </NuxtLink>
-        <div class="icon-item">
-          <i class="fa fa-address-book"></i>
-          <span>Meus convênios</span>
-        </div>
         <NuxtLink to="/consultar-dados">
           <div class="icon-item">
             <i class="fa fa-user"></i>
@@ -38,7 +34,7 @@
         <NuxtLink to="/consultar-orcamento">
           <div class="icon-item">
             <i class="fa fa-file-alt"></i>
-            <span>Meus orçamentos</span>
+            <span>Orçamentos</span>
           </div>
         </NuxtLink>
       </div>
@@ -49,7 +45,7 @@
     <section class="section">
       <h2>Administrador</h2>
       <div class="icons-area">
-        <NuxtLink to="/gerenciamento-usuario">
+        <NuxtLink to="/consultar-usuario">
           <div class="icon-item">
             <i class="fa fa-users"></i>
             <span>Gerenciamento de Usuários</span>
